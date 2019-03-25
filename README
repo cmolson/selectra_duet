@@ -1,0 +1,57 @@
+
+
+Settings and macros used to setup the Protea Design Selectra on ths Anycubic 
+Kossel Linear Plus using the Duet 2 WiFi.
+
+
+The conversion to a Duet 2 WiFi was done based on a series of excellent posts
+made here: http://danalspub.com/2018/07/anycubic-kossel-linear-plus-to-duet3d-part-1/
+
+
+The basis for the tool change code was taken from the samples provided by
+Protea Design. I tried to modify them into a tool change script that would
+work on the Duet.
+
+Below is a brief explanation of what each file is for:
+
+config.g
+    * This contains the modifications I made to my config.g.
+    * It defines 5 tools (0-4) and sets up a new axis (axis C for cam shaft).
+    * The new axis will be used to select the filament we are extruding.
+    * Motor stall detection is also setup so the selector can be auto-homed.
+
+tpostN.gcode
+    * This is a file that needs to be duplicated for each tool.
+    * It runs after a new tool has been selected.
+    * Note, all axis must have been homed for this code to be run by Duet.
+    * This selects the new filament by moving the cam selector, then runs the
+        load macro, followed by the prime macro. It then restores the location
+        of the print head to where it started.
+
+tfreeN.gcode
+    * This is a file that needs to be duplicated for each tool.
+    * It runs when a tool has been deselected (ex, switching from T0 to T1).
+    * This macro moves to the prime bin location, and retracts the filament to
+        before the selector.
+
+homec.gcode
+    * Required homing file for new axis.
+    * It handles homing the cam shaft / selector.
+    * On a delta the homedelta.g file is run for homing, if all axis are not
+       homed, it will also run the specific script for the remaining axis. In
+       our case axis C.
+
+MACROS
+
+load.gcode
+    * Pushes filament from before the selector into the hot end.
+
+unload.gcode
+    * Pulls the filament back out of the hot end and to before the selector.
+
+movetoprimebin.gcode
+    * Moves the print head to the location of the prime bin
+
+prime.gcode
+    * Extrudes a specfic amount of filament to ensure clean colour switch
+    

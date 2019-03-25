@@ -1,10 +1,20 @@
+;
+;
+;   prime.gcode
+;       Primes/Purges the extruder to ensure clean colour switch
+;
+;
+
+
+
+
 
 
 ; Setup extruder
-M906 E1050		; Set E axis current for pulling
+M906 E1050		; Set E axis current for extruding
 G92 E0          ; Zero extruder
 
-; Prime
+; Prime the nozzle
 M83
 G90
 G92 E0

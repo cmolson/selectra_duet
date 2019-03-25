@@ -1,4 +1,8 @@
-
+;
+;
+;   load.gcode
+;       Loads filament from the switcher into the hot end
+;
 
 ; Setup extruder
 M906 E1300		; Set E axis current for pulling
