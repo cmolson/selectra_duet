@@ -43,4 +43,6 @@ M906 E1300		    ; Set current for extruder
 
 ; Put near bottom/end of config.g
 G28                 ; Home all axis such that tool change takes effect
-T0                  ; Select Tool 0
+
+; Do not select tool 0, this requires the nozzle to be hot
+;T0                  ; Select Tool 0

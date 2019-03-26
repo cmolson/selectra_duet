@@ -29,6 +29,8 @@ M98 P"/macros/selectra/load.gcode"
 ; Prime Nozzle
 M98 P"/macros/selectra/prime.gcode"
 
+G90	               ; Set absolute postioning
+
 ; Restore location (only X, Y, Z axis - not C)
-G1 R2 X0 Y0 Z0  ; Restore to location slot 2
+G1 R2 X0 Y0 Z0 F2000   ; Restore to location slot 2
 

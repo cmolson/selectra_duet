@@ -15,3 +15,4 @@ M98 P"/macros/selectra/movetoprimebin.gcode"
 M98 P"/macros/selectra/unload.gcode"
 
 
+G90     ; Set absolute positioning
